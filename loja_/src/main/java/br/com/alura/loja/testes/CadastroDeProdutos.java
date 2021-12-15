@@ -15,8 +15,10 @@ public class CadastroDeProdutos {
 
 	public static void main(String[] args) {
 		cadastrarProduto();
+		
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
+		
 		Produto p = produtoDao.buscarPorId(1l); 
 		System.out.println(p.getPreco());
 		
@@ -24,6 +26,9 @@ public class CadastroDeProdutos {
 		//List<Produto> todos = produtoDao.buscarNome("Xiaomi Redmi");
 		List<Produto> todos = produtoDao.buscarNomeDaCategoria("CELULARES");
 		todos.forEach(p2 -> System.out.println(p2.getNome()));
+		
+		BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
+		System.out.println(precoDoProduto);
 	}
 
 	private static void cadastrarProduto() {
